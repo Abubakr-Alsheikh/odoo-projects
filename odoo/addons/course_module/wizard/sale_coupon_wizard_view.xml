@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_coupon_wizard_form_view" model="ir.ui.view">
+            <field name="name">sale.coupon.wizard.form</field>
+            <field name="model">sale.coupon.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Generate Coupon">
+                    <group>
+                        <field name="partner_id" />
+                        <field name="from_date" />
+                        <field name="to_date" />
+                        <field name="default_product_id" />
+                    </group>
+                    <footer>
+                        <button name="action_fetch_sale_orders" string="Fetch Sale Orders"
+                            type="object" />
+                        <button name="action_generate_coupon" string="Generate Coupon" type="object"
+                            class="oe_highlight" />
+
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sale_coupon_wizard" model="ir.actions.act_window">
+            <field name="name">Generate Coupon</field>
+            <field name="res_model">sale.coupon.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_sale_coupon_wizard"
+            name="Generate Coupon"
+            parent="sale.sale_menu_root"
+            action="action_sale_coupon_wizard"
+            sequence="10" />
+    </data>
+</odoo>

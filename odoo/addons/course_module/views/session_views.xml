@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="session_management_form_view" model="ir.ui.view">
+            <field name="name">session.management.form</field>
+            <field name="model">session.management</field>
+            <field name="arch" type="xml">
+                <form string="Session">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="course_id"/>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                            <field name="is_done"/>
+                            <field name="is_expired"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="session_management_tree_view" model="ir.ui.view">
+            <field name="name">session.management.tree</field>
+            <field name="model">session.management</field>
+            <field name="arch" type="xml">
+                <tree string="Sessions">
+                    <field name="name"/>
+                    <field name="course_id"/>
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                    <field name="is_done"/>
+                    <field name="is_expired"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="session_management_search_view" model="ir.ui.view">
+            <field name="name">session.management.search</field>
+            <field name="model">session.management</field>
+            <field name="arch" type="xml">
+                <search string="Search Sessions">
+                    <field name="name"/>
+                    <field name="course_id"/>
+                    <filter string="Expired" name="expired" domain="[('is_expired', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+
+         <record id="action_session_management" model="ir.actions.act_window">
+            <field name="name">Sessions</field>
+            <field name="res_model">session.management</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create your first session!
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_sessions" name="Sessions" parent="menu_course_management" action="action_session_management" sequence="2"/>
+    </data>
+</odoo>

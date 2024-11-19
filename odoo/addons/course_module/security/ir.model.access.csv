@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_course_management_user,course.management.user,model_course_management,,1,1,1,1
+access_session_management_user,session.management.user,model_session_management,,1,1,1,1
+access_sale_coupon_user,sale.coupon.user,model_sale_coupon,,1,1,1,1
+access_sale_coupon_wizard_user,sale.coupon.wizard.user,model_sale_coupon_wizard,,1,1,1,1

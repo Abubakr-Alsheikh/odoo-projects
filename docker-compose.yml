@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:latest # Use a specific version for consistency
+    restart: always
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/initdb:/docker-entrypoint-initdb.d  # Optional for initial DB setup
+      - odoo-db-data:/var/lib/postgresql/data
+
+  odoo:
+    build: ./odoo
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./odoo/addons:/mnt/extra-addons  # Mount your custom modules
+      - ./odoo/config:/etc/odoo          # Mount configuration files
+      - odoo-web-data:/var/lib/odoo
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+
+volumes:
+  odoo-db-data:
+  odoo-web-data:
